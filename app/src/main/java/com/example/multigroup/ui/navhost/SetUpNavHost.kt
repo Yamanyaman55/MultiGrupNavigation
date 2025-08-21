@@ -6,6 +6,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.multigroup.ui.detail.DetailScreen
 import com.example.multigroup.ui.home.HomeScreen
+import com.example.multigroup.ui.profileeditscreen.ProfileEditScreen
+import com.example.multigroup.ui.profilescreen.ProfileScreen
 import com.example.multigroup.ui.route.Screen
 
 @Composable
@@ -22,6 +24,14 @@ fun SetUpNavHost(navController: NavHostController ){
        composable(Screen.Detail.route){
             DetailScreen(navController)
         }
+
+       composable(Screen.Profile.route){
+           ProfileScreen(navController)
+       }
+
+      composable(Screen.ProfileEditScreen.route){
+          ProfileEditScreen(navController)
+      }
 
 
 }

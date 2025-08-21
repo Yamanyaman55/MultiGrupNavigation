@@ -1,4 +1,4 @@
-package com.example.multigroup.ui.detail
+package com.example.multigroup.ui.profilescreen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -15,26 +15,22 @@ import com.example.multigroup.ui.route.Screen
 
 
 @Composable
-fun  DetailScreen(navController: NavHostController) {
-
+fun ProfileScreen(navController: NavHostController) {
     Column(
-        modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.primary),
+        modifier = Modifier.fillMaxSize().background(color = MaterialTheme.colorScheme.error),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ){
 
-        ) {
-
-        Text(
-            "User Detail Screen ",
+        Text("Profile Screen",
             modifier = Modifier.clickable{
-                navController.navigate(Screen.Profile.route)
+                navController.navigate(Screen.ProfileEditScreen.route)
             },
-             style = MaterialTheme.typography.bodySmall,
-             color = MaterialTheme.colorScheme.error
-
-            )
-
+            color = MaterialTheme.colorScheme.scrim,
+            style = MaterialTheme.typography.bodySmall
+        )
 
     }
+
 
 }
