@@ -24,7 +24,7 @@ fun HomeScreen(navController: NavHostController) {
         Text(
             "Home Screen",
             modifier = Modifier.clickable{
-                navController.navigate(Screen.Detail.route)
+                navController.navigate(Screen.Detail.getRoute(5,"nurullah"))
             },
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.secondary
