@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
@@ -80,10 +81,33 @@ fun ProfileEditScreen(navController: NavHostController) {
 
 
         )
+      Spacer(modifier = Modifier.size(12.dp))
+
+        Text(
+            "Navigate to Detail PopUp to Profile Screen inclisuve false",
+            modifier =Modifier.clickable{
+                navController.navigate(Screen.Detail.route){
+                    popUpTo(Screen.Profile.route) {inclusive=false}
+                }
+            },
+            color = MaterialTheme.colorScheme.primary,
+            style = MaterialTheme.typography.bodyLarge
 
 
+        )
 
+        Spacer(modifier = Modifier.size(12.dp))
 
+        Text(
+            "Navigate to Detail PopUp to Profile Screen inclisuve true",
+            modifier =Modifier.clickable{
+                navController.navigate(Screen.Detail.route){
+                    popUpTo(Screen.Profile.route) {inclusive=true}
+                }
+            },
+            color = MaterialTheme.colorScheme.primary,
+            style = MaterialTheme.typography.bodySmall
+        )
 
 
     }
