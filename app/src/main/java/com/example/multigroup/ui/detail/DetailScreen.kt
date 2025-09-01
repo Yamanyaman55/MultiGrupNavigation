@@ -46,10 +46,18 @@ fun  DetailScreen(navController: NavHostController,id:Int,name: String) {
                  style = MaterialTheme.typography.bodySmall
 
         )
+          Spacer(modifier = Modifier.size(12.dp))
+
+        Text(
+                "Nurullah Yaman",
+                 color=MaterialTheme.colorScheme.error,
+                 style =MaterialTheme.typography.bodyMedium
+                
 
 
 
 
+        )
 
 
 
