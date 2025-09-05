@@ -1,7 +1,6 @@
 package com.example.multigroup.ui.navhost
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -38,12 +37,22 @@ fun SetUpNavHost(navController: NavHostController ){
            )
            ){
            val id= it.arguments?.getInt(ID_KEY) ?:0
-           val name= it.arguments?.getInt(NAME_KEY) ?:0
-            DetailScreen(navController,id,name)
+           val name= it.arguments?.getString(NAME_KEY) ?: ""
+            DetailScreen(navController,id, name)
         }
 
-       composable(Screen.Profile.route){
-           ProfileScreen(navController)
+       composable(Screen.Profile.route,
+           arguments = listOf(
+               navArgument("profile"){
+                   type = NavType.StringType
+                   nullable = true
+               }
+           )
+
+
+       ){
+           val name = it.arguments?.getString("profile")
+           ProfileScreen(navController,name)
        }
 
       composable(Screen.ProfileEditScreen.route){

@@ -1,6 +1,5 @@
 package com.example.multigroup.ui.detail
 
-import android.R
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -19,7 +18,7 @@ import com.example.multigroup.ui.route.Screen
 
 
 @Composable
-fun  DetailScreen(navController: NavHostController,id:Int,name: String) {
+fun  DetailScreen(navController: NavHostController, id: Int, name: String) {
 
     Column(
         modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.primary),
@@ -31,7 +30,7 @@ fun  DetailScreen(navController: NavHostController,id:Int,name: String) {
         Text(
             "User Detail Screen ",
             modifier = Modifier.clickable{
-                navController.navigate(Screen.Profile.route)
+                navController.navigate(Screen.Profile.getRoute("Nurullah Yamanın profilidir."))
             },
              style = MaterialTheme.typography.bodySmall,
              color = MaterialTheme.colorScheme.error
@@ -41,21 +40,9 @@ fun  DetailScreen(navController: NavHostController,id:Int,name: String) {
         Spacer(modifier = Modifier.size(20.dp))
 
         Text(
-                "id :::: $id   name:::$name",
+                "id :::: $id   name::: $name",
                  color = MaterialTheme.colorScheme.error,
                  style = MaterialTheme.typography.bodySmall
-
-        )
-          Spacer(modifier = Modifier.size(12.dp))
-
-        Text(
-                "Nurullah Yaman",
-                 color=MaterialTheme.colorScheme.error,
-                 style =MaterialTheme.typography.bodyMedium
-                
-
-
-
 
         )
 

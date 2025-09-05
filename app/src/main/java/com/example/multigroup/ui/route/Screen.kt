@@ -9,6 +9,8 @@ sealed class Screen (val route : String ) {
         fun getRoute(id:Int) = "detail_screen/$id"
         fun getRoute(id:Int,name:String) = "detail_screen/$id/{$name}"
     }
-    data object Profile : Screen ("Profile Screen")
+    data object Profile : Screen ("profile_screen?=profile={profile}"){
+        fun getRoute(profile:String) = "profile_screen?=profile=$profile"
+    }
     data object ProfileEditScreen :Screen("ProfileEditScreen")
 }
