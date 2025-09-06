@@ -1,7 +1,10 @@
 package com.example.multigroup.ui.navhost
 
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
-import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -22,7 +25,8 @@ fun SetUpNavHost(navController: NavHostController ){
         startDestination = Screen.Home.route
     )
     {
-        composable(Screen.Home.route){
+        composable(
+            Screen.Home.route){
             HomeScreen(navController)
         }
 
@@ -35,18 +39,65 @@ fun SetUpNavHost(navController: NavHostController ){
                navArgument(NAME_KEY){
                    type = NavType.StringType
                }
-           )
+           ),
+           enterTransition = {
+               fadeIn(animationSpec = tween(1000))
+           },
+
+           exitTransition = {
+               fadeOut(animationSpec = tween(1000))
+           }
+
+
            ){
            val id= it.arguments?.getInt(ID_KEY) ?:0
-           val name= it.arguments?.getInt(NAME_KEY) ?:0
-            DetailScreen(navController,id,name)
+           val name= it.arguments?.getString(NAME_KEY) ?: ""
+            DetailScreen(navController,id, name)
         }
 
-       composable(Screen.Profile.route){
-           ProfileScreen(navController)
+       composable(
+           Screen.Profile.route,
+           arguments = listOf(
+               navArgument("profile"){
+                   type = NavType.StringType
+                   nullable = true
+               }
+           ),
+           enterTransition = {
+               slideIntoContainer(
+                   AnimatedContentTransitionScope.SlideDirection.Left,
+                   animationSpec = tween(700)
+               )
+           },
+           exitTransition = {
+               slideOutOfContainer(
+                   AnimatedContentTransitionScope.SlideDirection.Right,
+                   animationSpec = tween(700)
+               )
+           }
+
+
+       ){
+           val name = it.arguments?.getString("profile")
+           ProfileScreen(navController,name)
        }
 
-      composable(Screen.ProfileEditScreen.route){
+      composable(
+          Screen.ProfileEditScreen.route,
+          enterTransition = {
+              slideIntoContainer(
+                  AnimatedContentTransitionScope.SlideDirection.Up,
+                  animationSpec = tween(500)
+              )
+          },
+          exitTransition = {
+              slideOutOfContainer(
+                  AnimatedContentTransitionScope.SlideDirection.Up,
+                  animationSpec = tween(500)
+              )
+          }
+
+      ){
           ProfileEditScreen(navController)
       }
 
