@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -108,6 +109,22 @@ fun ProfileEditScreen(navController: NavHostController) {
             color = MaterialTheme.colorScheme.primary,
             style = MaterialTheme.typography.bodySmall
         )
+
+        Spacer(modifier = Modifier.size(20.dp))
+
+
+        Button(onClick = {
+            navController.previousBackStackEntry
+                ?.savedStateHandle
+                ?.set("result_key", "data deneme")
+
+            navController.popBackStack()
+        }) {
+            Text("Geri dön ve veri gönder")
+        }
+
+
+
 
 
     }
